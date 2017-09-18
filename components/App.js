@@ -20,7 +20,7 @@ var App = React.createClass({
                 searchingText: searchingText
             });
         }.bind(this))
-        .then(responseText () => { 
+        .then(responseText => { 
                 var data = JSON.parse(xhr.responseText).data,
                             gif = {
                             url: data.fixed_width_downsampled_url,
