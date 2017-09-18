@@ -1,4 +1,4 @@
-var App = React.createClass({
+const App = React.createClass({
 
     getInitialState() {
         return {
@@ -15,10 +15,11 @@ var App = React.createClass({
 
         this.getGif(searchingText)
         .then(data => { 
-                        var gif = {
-                            url: data.fixed_width_downsampled_url,
-                            sourceUrl: data.url
-                            };
+                        const gif = {
+                              url: data.fixed_width_downsampled_url,
+                              sourceUrl: data.url
+                              };
+
                         this.setState({
                             loading: false,
                             gif: gif,
@@ -30,21 +31,21 @@ var App = React.createClass({
 
     },
 
-    getGif: function(searchingText, callback) {
+    getGif: function(searchingText) {
 
         return new Promise(
             function(resolve, reject) {
-                var GIPHY_API_URL = 'http://api.giphy.com',
-                    GIPHY_PUB_KEY = 'hUzWNheMHr7KPeZM3lGHSoUyq5rDSIik',
-                    url = GIPHY_API_URL + '/v1/gifs/random?api_key=' + GIPHY_PUB_KEY + '&tag=' + searchingText,
-                    xhr = new XMLHttpRequest(); 
+                const GIPHY_API_URL = 'http://api.giphy.com',
+                      GIPHY_PUB_KEY = 'hUzWNheMHr7KPeZM3lGHSoUyq5rDSIik',
+                      url = GIPHY_API_URL + '/v1/gifs/random?api_key=' + GIPHY_PUB_KEY + '&tag=' + searchingText,
+                      xhr = new XMLHttpRequest(); 
 
                 xhr.open('GET', url);
                 xhr.send();
         
                 xhr.onload = function() {
                     if (xhr.status === 200) {
-                        var data = JSON.parse(xhr.responseText).data;
+                        const data = JSON.parse(xhr.responseText).data;
                         resolve(data);
                     }
                     else {
@@ -62,16 +63,16 @@ var App = React.createClass({
 
     render: function() {
 
-        var styles = {
-            margin: '0 auto',
-            textAlign: 'center',
-            width: '90%'
+        const styles = {
+              margin: '0 auto',
+              textAlign: 'center',
+              width: '90%'
         };
 
         return (
           <div style={styles}>
-                <h1>Wyszukiwarka GIF-ow!</h1>
-                <p>Znajdź gifa na <a href='http://giphy.com'>giphy</a>. Naciskaj enter, aby pobrać kolejne gify.</p>
+                <h1>Wyszukiwarka GIF-ów!</h1>
+                <p>Znajdź gifa na <a href='http://giphy.com' target="_blank">giphy</a>. Naciskaj enter, aby pobrać kolejne gify.</p>
                 <Search onSearch={this.handleSearch}/>
                 <Gif 
                     loading={this.state.loading}

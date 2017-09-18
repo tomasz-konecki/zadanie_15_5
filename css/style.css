@@ -1,7 +1,13 @@
 body {
     background-color: lightblue;
 }
+/*
 input[type='text'] {
     background-color: lightgray;
+    font-size: 12px;
+}
+*/
+input {
+    background-color: teal;
     font-size: 12px;
 }
