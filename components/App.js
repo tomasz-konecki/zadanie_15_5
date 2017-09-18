@@ -5,7 +5,7 @@ var App = React.createClass({
             loading: false,
             searchingText: '',
             gif: {}
-        };
+        }
     },
 
     handleSearch: function(searchingText) {
