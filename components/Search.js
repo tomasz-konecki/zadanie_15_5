@@ -6,7 +6,7 @@ Search = React.createClass({
         };
     },
 
-    handleChange: function(event) {
+    handleChange(event) {
         const searchingText = event.target.value;
         this.setState({searchingText: searchingText});
     
@@ -15,13 +15,13 @@ Search = React.createClass({
         }
     },
     
-    handleKeyUp: function(event) {
+    handleKeyUp(event) {
         if (event.keyCode === 13) {
             this.props.onSearch(this.state.searchingText);
         }
     },
 
-    render: function() {
+    render() {
         const styles = {
               fontSize: '1.5em',
               width: '90%',

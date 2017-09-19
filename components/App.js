@@ -8,7 +8,7 @@ const App = React.createClass({
         }
     },
 
-    handleSearch: function(searchingText) {
+    handleSearch(searchingText) {
         this.setState({
             loading: true
         });
@@ -22,8 +22,8 @@ const App = React.createClass({
 
                         this.setState({
                             loading: false,
-                            gif: gif,
-                            searchingText: searchingText
+                            gif,
+                            searchingText
                         });
 
         })
@@ -31,19 +31,19 @@ const App = React.createClass({
 
     },
 
-    getGif: function(searchingText) {
+    getGif(searchingText) {
 
         return new Promise(
-            function(resolve, reject) {
+            (resolve, reject) => {
                 const GIPHY_API_URL = 'http://api.giphy.com',
                       GIPHY_PUB_KEY = 'hUzWNheMHr7KPeZM3lGHSoUyq5rDSIik',
-                      url = GIPHY_API_URL + '/v1/gifs/random?api_key=' + GIPHY_PUB_KEY + '&tag=' + searchingText,
+                      url = `${GIPHY_API_URL}/v1/gifs/random?api_key=${GIPHY_PUB_KEY}&tag=${searchingText}`,
                       xhr = new XMLHttpRequest(); 
 
                 xhr.open('GET', url);
                 xhr.send();
         
-                xhr.onload = function() {
+                xhr.onload = () => {
                     if (xhr.status === 200) {
                         const data = JSON.parse(xhr.responseText).data;
                         resolve(data);
@@ -53,7 +53,7 @@ const App = React.createClass({
                     }
                 };
 
-                xhr.onerror = function() {
+                xhr.onerror = () => {
                     reject(new Error(
                         `XMLHttpRequest Error: ${this.error}`));
                 };
@@ -61,7 +61,7 @@ const App = React.createClass({
         });
     },
 
-    render: function() {
+    render() {
 
         const styles = {
               margin: '0 auto',
